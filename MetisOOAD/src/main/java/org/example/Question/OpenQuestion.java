@@ -7,6 +7,6 @@ public class OpenQuestion extends Question {
 
     @Override
     boolean validate(String givenAnswer) {
-        return rightAnswers;
+        return Arrays.asList(rightAnswers).contains(givenAnswer);
     }
 }

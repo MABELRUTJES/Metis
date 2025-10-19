@@ -1,20 +1,15 @@
 package org.example;
 
-import org.example.Puntentelling.PuntentellingStrategie;
-import org.example.Question.Question;
-
-import java.util.Map;
+import org.example.Kennistoets.Kennistoets;
 
 public class MetisController {
-    private int totalTime;
-    private int score;
-    private Map<Question, String> givenAnswers;
-    private PuntentellingStrategie puntentellingStrategie;
+    private Kennistoets kennistoets;
     public static MetisController getInstance() {
         return null;
     }
 
     public void startTest(String egbc, String toetsRequirements, String roomEgbc) {
+        kennistoets.startTest();
     }
 
     public void joinTest(String studentname, String roomEgbc) {
@@ -32,12 +27,6 @@ public class MetisController {
     }
 
     public int calculateScore(String studentname, String roomEgbc) {
-        int rightAnswers = amountOfRightAnswers();
-        return puntentellingStrategie.calculateScore(totalTime, rightAnswers);
-    }
-
-    private int amountOfRightAnswers() {
-        // Question.validate(string givenAnswer)
-        return 0;
+        return kennistoets.calculateScore();
     }
 }
