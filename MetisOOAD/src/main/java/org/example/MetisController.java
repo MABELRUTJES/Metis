@@ -1,6 +1,15 @@
 package org.example;
 
+import org.example.Puntentelling.PuntentellingStrategie;
+import org.example.Question.Question;
+
+import java.util.Map;
+
 public class MetisController {
+    private int totalTime;
+    private int score;
+    private Map<Question, String> givenAnswers;
+    private PuntentellingStrategie puntentellingStrategie;
     public static MetisController getInstance() {
         return null;
     }
@@ -23,6 +32,12 @@ public class MetisController {
     }
 
     public int calculateScore(String studentname, String roomEgbc) {
+        int rightAnswers = amountOfRightAnswers();
+        return puntentellingStrategie.calculateScore(totalTime, rightAnswers);
+    }
+
+    private int amountOfRightAnswers() {
+        // Question.validate(string givenAnswer)
         return 0;
     }
 }
