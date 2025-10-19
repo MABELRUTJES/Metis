@@ -46,7 +46,7 @@ public class Kennistoets {
         return amountOfRightAnswers.get();
     }
 
-    private int stopTimer(){
+    private void stopTimer(){
         totalTime = System.currentTimeMillis() - startTime;
     }
 }
