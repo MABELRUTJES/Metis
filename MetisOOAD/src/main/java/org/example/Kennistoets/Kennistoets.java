@@ -3,7 +3,9 @@ package org.example.Kennistoets;
 import org.example.Puntentelling.PuntentellingStrategie;
 import org.example.Question.Question;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Kennistoets {
@@ -14,17 +16,27 @@ public class Kennistoets {
     private PuntentellingStrategie puntentellingStrategie;
     private Question currentQuestion;
 
+    private final String code;
+    private final String title;
+    private final List<Question> questions = new ArrayList<>();
+
+    public Kennistoets(String code, String title) {
+        this.code = code;
+        this.title = title;
+    }
+
     public int calculateScore(){
         stopTimer();
         int amountOfRightAnswers = amountOfRightAnswers();
         return puntentellingStrategie.calculateScore(totalTime, amountOfRightAnswers);
     }
 
+
     public void startTest(){
-        startTimer();
-        //start test
-        //set first question as current question
+        questions.clear();
+        questions.addAll(MockKennistoets.loadDefaultQuiz(title));
     }
+
 
     public void setAnswer(String answer){
         givenAnswers.put(currentQuestion, answer);

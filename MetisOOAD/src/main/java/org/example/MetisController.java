@@ -1,15 +1,31 @@
 package org.example;
 
 import org.example.Kennistoets.Kennistoets;
+import org.example.Lokaal.Lokaal;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MetisController {
     private Kennistoets kennistoets;
+    private static final MetisController INSTANCE = new MetisController();
     public static MetisController getInstance() {
-        return null;
+        return INSTANCE; // ← nooit null
     }
 
-    public void startTest(String egbc, String toetsRequirements, String roomEgbc) {
-        kennistoets.startTest();
+    // roomId naar Lokaal
+    private final Map<String, Lokaal> lokalen = new HashMap<>();
+
+    private Lokaal getOfMaakLokaal(String roomId) {
+        return lokalen.computeIfAbsent(roomId, Lokaal::new);
+    }
+
+    public void startTest(String code, String title, String roomId) {
+        Kennistoets kt = new Kennistoets(code, title);
+        kt.startTest();
+        Lokaal lokaal = getOfMaakLokaal(roomId);
+        lokaal.setKennistoets(kt);
+        System.out.println("Toets \"" + title + "\" (code: " + code + ") ligt in " + roomId);
     }
 
     public void joinTest(String studentname, String roomEgbc) {

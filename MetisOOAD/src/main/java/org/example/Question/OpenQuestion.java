@@ -3,10 +3,15 @@ package org.example.Question;
 import java.util.Arrays;
 
 public class OpenQuestion extends Question {
-    String[] rightAnswers;
+    private final String[] rightAnswers;
+
+    public OpenQuestion(String question, String[] rightAnswers) {
+        super(question, null);
+        this.rightAnswers = rightAnswers;
+    }
 
     @Override
-    boolean validate(String givenAnswer) {
-        return Arrays.asList(rightAnswers).contains(givenAnswer);
+    public boolean validate(String givenAnswer) {
+        return givenAnswer != null && Arrays.asList(rightAnswers).contains(givenAnswer);
     }
 }

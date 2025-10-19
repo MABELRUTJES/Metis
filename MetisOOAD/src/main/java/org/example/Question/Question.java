@@ -1,10 +1,23 @@
 package org.example.Question;
 
 public abstract class Question {
-    private String question;
-    private String rightAnswer;
+    private final String question;
+    private final String rightAnswer;
+
+    protected Question(String question, String rightAnswer) {
+        this.question = question;
+        this.rightAnswer = rightAnswer;
+    }
+
+    public String getText() {
+        return question;
+    }
+
+    public String getRightAnswer() {
+        return rightAnswer;
+    }
 
     public boolean validate(String givenAnswer) {
-        return rightAnswer.equals(givenAnswer);
+        return rightAnswer != null && rightAnswer.equals(givenAnswer);
     }
 }
