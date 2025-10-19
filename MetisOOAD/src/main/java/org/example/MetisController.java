@@ -20,6 +20,7 @@ public class MetisController {
     }
 
     public void saveAnswer(String studentname, String roomEgbc, String answer) {
+        kennistoets.setAnswer(answer);
     }
 
     public boolean testFinished(String studentname, String roomEgbc) {

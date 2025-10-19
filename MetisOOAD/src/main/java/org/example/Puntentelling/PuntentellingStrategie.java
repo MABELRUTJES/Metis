@@ -1,5 +1,5 @@
 package org.example.Puntentelling;
 
 public interface PuntentellingStrategie {
-    int calculateScore(int totalTime, int rightAnswers);
+    int calculateScore(long totalTime, int rightAnswers);
 }

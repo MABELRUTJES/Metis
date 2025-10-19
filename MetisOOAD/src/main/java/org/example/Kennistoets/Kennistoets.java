@@ -3,22 +3,35 @@ package org.example.Kennistoets;
 import org.example.Puntentelling.PuntentellingStrategie;
 import org.example.Question.Question;
 
-import java.util.Map;
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Kennistoets {
-    private int totalTime;
+    private long startTime;
+    private long totalTime;
     private int score;
-    private Map<Question, String> givenAnswers;
+    private HashMap<Question, String> givenAnswers;
     private PuntentellingStrategie puntentellingStrategie;
+    private Question currentQuestion;
 
     public int calculateScore(){
+        stopTimer();
         int amountOfRightAnswers = amountOfRightAnswers();
         return puntentellingStrategie.calculateScore(totalTime, amountOfRightAnswers);
     }
 
     public void startTest(){
+        startTimer();
+        //start test
+        //set first question as current question
+    }
 
+    public void setAnswer(String answer){
+        givenAnswers.put(currentQuestion, answer);
+    }
+
+    private void startTimer(){
+        startTime = System.currentTimeMillis();
     }
 
     private int amountOfRightAnswers() {
@@ -31,5 +44,9 @@ public class Kennistoets {
                 }
         );
         return amountOfRightAnswers.get();
+    }
+
+    private int stopTimer(){
+        totalTime = System.currentTimeMillis() - startTime;
     }
 }
