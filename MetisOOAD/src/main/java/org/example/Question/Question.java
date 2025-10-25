@@ -13,10 +13,6 @@ public abstract class Question {
         return question;
     }
 
-    public String getRightAnswer() {
-        return rightAnswer;
-    }
-
     public boolean validate(String givenAnswer) {
         return rightAnswer != null && rightAnswer.equals(givenAnswer);
     }
